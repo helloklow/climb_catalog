@@ -17,7 +17,7 @@ class ClimbCatalog::CLI
   def menu
     input = nil
     while input != "exit"
-      puts "What type of climb would like today? Enter list to view categories again or exit to leave."
+      puts "What type of climb would like today? Enter list to view categories or exit to leave."
       input = gets.strip.downcase
       case input
       when "boulder"
@@ -28,6 +28,8 @@ class ClimbCatalog::CLI
         puts "Lists trad climbs..."
       when "list"
         list_categories
+      else
+        puts "That's not a valid type of climb!" unless input == "exit"
       end
     end
   end
