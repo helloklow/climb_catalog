@@ -1,7 +1,7 @@
 class ClimbCatalog::Climb 
   attr_accessor :name, :grade, :location, :url
   
-  def self.boulder
+  def self.all
     # @boulder = ClimbCatalog::Climb.boulder #=> return instances of bouldering routes
     boulder_ez = self.new
     boulder_ez.name = "Climb name"

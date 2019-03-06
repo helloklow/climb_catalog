@@ -12,6 +12,7 @@ class ClimbCatalog::CLI
     puts "1 - Easy"
     puts "2 - Intermediate"
     puts "3 - Advanced"
+    @climbs = ClimbCatalog::Climb.all
   end
   
   def menu
@@ -20,17 +21,16 @@ class ClimbCatalog::CLI
       puts "What type of climb would like today? Enter list to view categories or exit to leave."
       input = gets.strip.downcase
       
-      
       #case input
       #when "boulder"
         #puts "Lists boulders..."
       #when "sport"
-       #puts "Lists sport climbs..."
+       #puts "Lists sport climbs..." # *** How to make the ELSE statement appear if 4 is entered?
       #when "trad"
         #puts "Lists trad climbs..."
       #when "list"
         
-      if input.to_i > 0 
+      if input.to_i > 0
         puts @climbs[input.to_i-1]
       elsif input == "list"
         list_categories
