@@ -9,9 +9,9 @@ class ClimbCatalog::CLI
   
   def list_categories
     # pull category from mountain project for user to decide; input by typing category or 1, 2, or 3?
-    puts "Boulder"
-    puts "Sport"
-    puts "Trad"
+    puts "1 - Easy"
+    puts "2 - Intermediate"
+    puts "3 - Advanced"
   end
   
   def menu
@@ -19,17 +19,23 @@ class ClimbCatalog::CLI
     while input != "exit"
       puts "What type of climb would like today? Enter list to view categories or exit to leave."
       input = gets.strip.downcase
-      case input
-      when "boulder"
-        puts "Lists boulders..."
-      when "sport"
-       puts "Lists sport climbs..."
-      when "trad"
-        puts "Lists trad climbs..."
-      when "list"
+      
+      
+      #case input
+      #when "boulder"
+        #puts "Lists boulders..."
+      #when "sport"
+       #puts "Lists sport climbs..."
+      #when "trad"
+        #puts "Lists trad climbs..."
+      #when "list"
+        
+      if input.to_i > 0 
+        puts @climbs[input.to_i-1]
+      elsif input == "list"
         list_categories
       else
-        puts "That's not a valid type of climb!" unless input == "exit"
+        puts "You're must be too strong for these parts! Please enter a valid climbing difficulty." unless input == "exit"
       end
     end
   end

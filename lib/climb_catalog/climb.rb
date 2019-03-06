@@ -3,35 +3,37 @@ class ClimbCatalog::Climb
   
   def self.boulder
     # @boulder = ClimbCatalog::Climb.boulder #=> return instances of bouldering routes
-    boulder_1 = self.new
-    boulder_1.name = "Climb name"
-    boulder_1.grade = "Climb grade"
-    boulder_1.location = "Climb location"
-    boulder_1.url = "Climb url"
+    boulder_ez = self.new
+    boulder_ez.name = "Climb name"
+    boulder_ez.grade = "Climb grade"
+    boulder_ez.location = "Climb location"
+    boulder_ez.url = "Climb url"
     
-    boulder_2 = self.new
-    boulder_2.name = "Climb name"
-    boulder_2.grade = "Climb grade"
-    boulder_2.location = "Climb location"
-    boulder_2.url = "Climb url"
+    boulder_int = self.new
+    boulder_int.name = "Climb name"
+    boulder_int.grade = "Climb grade"
+    boulder_int.location = "Climb location"
+    boulder_int.url = "Climb url"
     
-    [boulder_1, boulder_2]
-  end
-  
-  def self.sport
-    # @sport = ClimbCatalog::Climb.sport #=> return instances of sport climbing routes
-  end
-  
-  def self.trad
-    # @trad = ClimbCatalog::Climb.trad #=> return instances of trad climbing routes
+    boulder_adv = self.new
+    boulder_adv.name = "Climb name"
+    boulder_adv.grade = "Climb grade"
+    boulder_adv.location = "Climb location"
+    boulder_adv.url = "Climb url"
+    
+    [boulder_ez, boulder_int, boulder_adv]
   end
     
   def grade
-    # @boulder_grade = ClimbCatalog::Climb.boulder.grade #=> lists bouldering routes by difficulty
-    # @sport_grade = ClimbCatalog::Climb.sport.grade #=> lists sport climbing routes by difficulty
-    # @trad_grade = ClimbCatalog::Climb.trad.grade #=> lists trad climbing routes by difficulty
+    # ClimbCatalog::Climb.grade #=> returns grade of boulder
   end
     
-    # summary and url methods?
+  def location
+    # ClimbCatalog::Climb.location #=> returns location of boulder
+  end
+  
+  def url
+    # ClimbCatalog::Climb.url #=> sends user to url for boulder
+  end
   
 end
