@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/climb_catalog.rb'
+require "./lib/climb_catalog.rb"
 
 ClimbCatalog::CLI.new.call
