@@ -2,11 +2,13 @@ class ClimbCatalog::CLI
   
   def call
     puts "Welcome, climber!" 
-    puts "Which U.S. state will you be climbing in?"
     menu
   end
   
   def menu
+    puts "Which U.S. state will you be climbing in?"
+    input = gets.strip.downcase
+    
     puts "Are you interested in boulder, sport, or trad climbs?"
     input = gets.strip.downcase
     
@@ -19,14 +21,15 @@ class ClimbCatalog::CLI
     print_climb(climb)
     
     puts "Would you like to choose another climb? yes / no"
-      input = gets.strip.downcase
-      if input == "yes"
-        menu
-      elsif input == "no"
-        goodbye
-      else
-        puts "Sorry, I don't understand. Please enter yes, no, or exit."
-        menu
+     input = gets.strip.downcase
+    if input == "yes"
+      menu
+    elsif input == "no"
+      goodbye
+    else
+      puts "Sorry, I don't understand. Please enter yes, no, or exit."
+      menu
+    end
   end
   
 end
