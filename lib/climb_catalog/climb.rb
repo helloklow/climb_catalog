@@ -4,8 +4,8 @@ class ClimbCatalog::Climb
   
   @@all = []
   
-  def self.new_by_location()
-    
+  def self.new_from_classics_page(x)
+    self.new()
   end
   
   def initialize(name=nil, type=nil, grade=nil, location=nil, url=nil)

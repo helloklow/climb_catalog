@@ -21,7 +21,8 @@ class ClimbCatalog::CLI
     elsif input == "trad"
       puts "trad1, trad2, trad3"
     else
-      puts "Sorry, I don't understand. Please enter a type of climb or exit."
+      puts "Sorry, I don't understand. Please try again or exit."
+      menu
     end
     
     puts "Which climb would you like beta for?"
