@@ -1,47 +1,32 @@
 class ClimbCatalog::CLI
   
   def call
-    puts "Welcome, climber!" # removed from #list_categories so it doesn't run when user calls list
-    list_categories
+    puts "Welcome, climber!" 
+    puts "Which U.S. state will you be climbing in?"
     menu
-    goodbye
-  end
-  
-  def list_categories
-    # pull category from mountain project for user to decide; input by typing category or 1, 2, or 3?
-    puts "1 - Easy"
-    puts "2 - Intermediate"
-    puts "3 - Advanced"
-    @climbs = ClimbCatalog::Climb.all
   end
   
   def menu
-    input = nil
-    while input != "exit"
-      puts "What type of climb would like today? Enter list to view categories or exit to leave."
+    puts "Are you interested in boulder, sport, or trad climbs?"
+    input = gets.strip.downcase
+    
+    print_climbs(input)
+    
+    puts "Which climb would you like beta for?"
+    input = gets.strip.downcase
+    
+    climb = ClimbCatalog::Climb.find(input.to_i) # should this be to_i in my case?
+    print_climb(climb)
+    
+    puts "Would you like to choose another climb? yes / no"
       input = gets.strip.downcase
-      
-      #case input
-      #when "boulder"
-        #puts "Lists boulders..."
-      #when "sport"
-       #puts "Lists sport climbs..." # *** How to make the ELSE statement appear if 4 is entered?
-      #when "trad"
-        #puts "Lists trad climbs..."
-      #when "list"
-        
-      if input.to_i > 0
-        puts @climbs[input.to_i-1]
-      elsif input == "list"
-        list_categories
+      if input == "yes"
+        menu
+      elsif input == "no"
+        goodbye
       else
-        puts "You're must be too strong for these parts! Please enter a valid climbing difficulty." unless input == "exit"
-      end
-    end
-  end
-  
-  def goodbye
-    puts "Climb on!"
+        puts "Sorry, I don't understand. Please enter yes, no, or exit."
+        menu
   end
   
 end
