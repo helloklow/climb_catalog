@@ -59,4 +59,8 @@ class ClimbCatalog::CLI
     
   end
   
+  def goodbye
+    puts "Climb on!"
+  end
+  
 end
