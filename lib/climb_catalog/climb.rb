@@ -4,7 +4,7 @@ class ClimbCatalog::Climb
   
   @@all = []
   
-  def self.scrape_classics_page(route)
+  def self.new_from_classic_climbs(route)
     self.new(
       route.css("td").attribute("href").text, # name
       route.css(".small .text-warm .pl-half").text, # type
