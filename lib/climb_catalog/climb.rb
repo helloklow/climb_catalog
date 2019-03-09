@@ -15,10 +15,10 @@ class ClimbCatalog::Climb
     climb = Climb.new
     # fill in climb's data
     doc = Nokogiri::HTML(open(url))
-    name = doc.search()
-    type = doc.search()
-    grade = doc.search()
-    location = doc.search()
+    name = doc.search("tr.route-row").attribute("href").text
+    type = doc.search("span.small .text-warm .pl-half").text
+    grade = doc.search("span.rateYDS").text
+    location = doc.search("span.text-warm").attribute("href").text
     
     climb
   end
