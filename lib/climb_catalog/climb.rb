@@ -45,8 +45,8 @@ class ClimbCatalog::Climb
     
   end
   
-  #def doc
+  def doc
     #@doc ||= Nokogiri::HTML(open(self.url))
-  #end
+  end
   
 end

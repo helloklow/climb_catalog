@@ -1,6 +1,7 @@
 class ClimbCatalog::CLI
   
   def call
+    ClimbCatalog::Climb.new.create_climbs
     puts "Welcome, climber!" 
     menu
   end
@@ -8,18 +9,18 @@ class ClimbCatalog::CLI
   def menu
     puts "Are you interested in boulder, sport, or trad climbs today?"
     input = gets.strip.downcase
-    # program collects correct type of climb
-    # print_climbs(input) # program lists climbs of type
-    if input == "boulder"
-      puts "boulder1, boulder2, boulder3"
-    elsif input == "sport"
-      puts "sport1, sport2, sport3"
-    elsif input == "trad"
-      puts "trad1, trad2, trad3"
-    else
-      puts "Sorry, I don't understand. Please try again or exit."
-      menu
-    end
+    print_climbs(input) # program lists climbs of type
+    
+    #if input == "boulder"
+      #puts "boulder1, boulder2, boulder3"
+    #elsif input == "sport"
+      #puts "sport1, sport2, sport3"
+    #elsif input == "trad"
+      #puts "trad1, trad2, trad3"
+    #else
+      #puts "Sorry, I don't understand. Please try again or exit."
+      #menu
+    #end
     
     puts "Which climb would you like beta for?"
     input = gets.strip.downcase
@@ -45,7 +46,7 @@ class ClimbCatalog::CLI
   end
   
   def print_climbs(type) # how do I pass in the type??
-    puts "#{type} climbs in #{scrape_location}:"
+    puts "#{type} climbs in Fort Collins:"
     puts ""
     ClimbCatalog::Climb.all.each do |climb, index|
       puts "#{index}. #{climb.name}, #{climb.location}"
