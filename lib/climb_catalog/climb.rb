@@ -7,8 +7,10 @@ class ClimbCatalog::Climb
   def self.new_from_classic_climbs(url)
     climb = Climb.new
     
-    properties = Scraper.new
-    
+    properties = Scraper.mountain_project(url)
+    properties.each do |x, y|
+      climb.send("#{x}=", y)
+    end
     climb
   end
   
