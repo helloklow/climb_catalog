@@ -6,18 +6,19 @@ class ClimbCatalog::Climb
   
   def self.scrape_classics_page(route)
     self.new(
-      # name - route.css("td").attribute("href").text
-      # type - route.css(".small .text-warm .pl-half").text
-      # grade - route.css(".rateYDS").text
-      # state - route.css(".left-nav-row .l-2").attribute("href").text
-      # location - route.css(".text-warm").text
+      route.css("td").attribute("href").text, # name
+      route.css(".small .text-warm .pl-half").text, # type
+      route.css(".rateYDS").text, # grade
+      route.css(".left-nav-row .l-2").attribute("href").text, # state
+      route.css(".text-warm").text # location
       )
   end
   
-  def initialize(name=nil, type=nil, grade=nil, location=nil)
+  def initialize(name=nil, type=nil, grade=nil, state=nil, location=nil)
     @name = name 
     @type = type
     @grade = grade
+    @state = state
     @location = location
     @@all << self
   end
