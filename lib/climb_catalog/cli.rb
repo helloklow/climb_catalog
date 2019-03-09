@@ -6,11 +6,7 @@ class ClimbCatalog::CLI
   end
   
   def menu
-    puts "Which U.S. state will you be climbing in?"
-    input = gets.strip.downcase
-    # program goes to correct state
-    
-    puts "Are you interested in boulder, sport, or trad climbs?"
+    puts "Are you interested in boulder, sport, or trad climbs today?"
     input = gets.strip.downcase
     # program collects correct type of climb
     # print_climbs(input) # program lists climbs of type
@@ -30,7 +26,7 @@ class ClimbCatalog::CLI
     # program goes to correct climb
     #climb = ClimbCatalog::Climb.find(input.to_i) # should this be to_i in my case?
     if input != nil
-      puts "aaaaaaaalllllllllllllllll the info on your climb!"
+      puts "ALL the info on your climb!"
     else
       puts "Sorry, which climb?"
     end
