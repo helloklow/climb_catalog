@@ -1,8 +1,8 @@
 class ClimbCatalog::Scraper
   
-  def self.mountain_project(url)
+  def self.mountain_project
       # fill in climb's data
-    doc = Nokogiri::HTML(open(url))
+    doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics"))
     climb = {}
     
     climb[:name] = doc.search("tr.route-row").attribute("href").text
