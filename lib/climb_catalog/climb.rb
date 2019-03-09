@@ -26,28 +26,28 @@ class ClimbCatalog::Climb
     @@all
   end
   
-  def self.find(type)
-    self.all[type]
-  end
+ #def self.find(type)
+   #self.all[type]
+ #end
     
-  def grade
+ #def grade
     
-  end
+ #end
     
-  def location
+ #def location
     
-  end
+ #end
   
-  def description
+ #def description
     
-  end
+ #end
   
-  def url
+ #def url
     
-  end
+ #end
   
-  def doc
+ #def doc
     #@doc ||= Nokogiri::HTML(open(self.url))
-  end
+ #end
   
 end
