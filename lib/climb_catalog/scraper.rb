@@ -25,7 +25,14 @@ class ClimbCatalog::Scraper
   end
   
   def print_climbs
-    
+    self.make_climbs
+    Climb.all.each do |route|
+      if route.name.downcase
+        puts "#{route.type.capitalize} climbs in Fort Collins:"
+        puts ""
+        puts "#{index}. #{route.name} - #{route.grade}, #{route.location}"
+      end
+    end
   end
  #def scrape_classic_climbs
   # self.get_page.css("td").attribute("href").text

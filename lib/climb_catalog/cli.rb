@@ -47,13 +47,13 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  def print_climbs(type) # how do I pass in the type??
-    puts "#{type.capitalize} climbs in Fort Collins:"
-    puts ""
-    ClimbCatalog::Climb.all.each do |climb, index|
-      puts "#{index}. #{climb.name}, #{climb.location}"
-    end
-  end
+  #def print_climbs(type) # how do I pass in the type??
+    #puts "#{type.capitalize} climbs in Fort Collins:"
+    #puts ""
+    #ClimbCatalog::Climb.all.each do |climb, index|
+      #puts "#{index}. #{climb.name}, #{climb.location}"
+    #end
+  #end
   
   #def print_climb(climb)
     
