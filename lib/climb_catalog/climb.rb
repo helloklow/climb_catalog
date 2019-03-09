@@ -5,13 +5,14 @@ class ClimbCatalog::Climb
   @@all = []
   
   def self.new_from_classic_climbs(url)
-    climb = Climb.new
-    
-    properties = Scraper.mountain_project(url)
-    properties.each do |x, y|
-      climb.send("#{x}=", y)
+   #climb = Climb.new
+    Climb.new.tap do |climb|
+      properties = Scraper.mountain_project(url)
+      properties.each do |x, y|
+        climb.x = y
+        climb.send("#{x}=", y)
+      end
     end
-    climb
   end
   
   def initialize(name=nil, type=nil, grade=nil, location=nil)
