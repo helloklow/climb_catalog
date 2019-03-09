@@ -5,6 +5,7 @@ require 'open-uri'
 require_relative "./climb_catalog/version.rb"
 require_relative "./climb_catalog/cli.rb"
 require_relative "./climb_catalog/climb.rb"
+require_relative "./climb_catalog/scraper.rb"
 
 
 # module ClimbCatalog
