@@ -55,8 +55,8 @@ class ClimbCatalog::CLI
     end
   end
   
-  def print_climb(climb)
+  #def print_climb(climb)
     
-  end
+  #end
   
 end
