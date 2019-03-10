@@ -1,6 +1,6 @@
-class ClimbCatalog::Climb 
+class ClimbCatalog::Destination 
   
-  attr_accessor :location, :type, :description
+  attr_accessor :name, :type, :description
   
   @@all = []
   
@@ -11,14 +11,14 @@ class ClimbCatalog::Climb
       #end
     #end
     self.new(
-      location.css("h3").text.strip, #location
+      location.css("h3").text.strip, #name
       location.css("h2").text.strip, #type
       location.css("p").text.strip #description
       )
   end
   
-  def initialize(location=nil, type=nil, description=nil)
-    @location = location
+  def initialize(name=nil, type=nil, description=nil)
+    @name = name
     @type = type
     @description = description
     save
@@ -40,7 +40,7 @@ class ClimbCatalog::Climb
     self.all[index]
   end
   
-  def self.find_by_destination(location)
+  def self.find_by_name(location)
    self.all[location]
   end
   

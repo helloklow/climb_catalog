@@ -10,7 +10,7 @@ class ClimbCatalog::Scraper
   
   def make_destinations
     get_destinations.each do |location|
-      ClimbCatalog::Climb.new_from_web(location)
+      ClimbCatalog::Destination.new_from_web(location)
     end
   end
     
