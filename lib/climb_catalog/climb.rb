@@ -1,6 +1,6 @@
 class ClimbCatalog::Climb 
   
-  attr_accessor :name, :type, :grade, :location, :description, :url
+  attr_accessor :destination, :type, :description
   
   @@all = []
   
@@ -11,18 +11,16 @@ class ClimbCatalog::Climb
       #end
     #end
     self.new(
-      route.css("tr.route-row .bg-gray-background").text.strip, #name
+      route.css("tr.route-row .bg-gray-background").text.strip, #destination
       route.css("span.small .text-warm .pl-half").text.strip, #type
-      route.css("span.rateYDS").text.strip, #grade
-      route.css("span.text-warm a").text.strip #location
+      route.css("span.rateYDS").text.strip, #description
       )
   end
   
-  def initialize(name=nil, type=nil, grade=nil, location=nil)
-    @name = name 
+  def initialize(destination=nil, type=nil, description=nil)
+    @destination = destination 
     @type = type
-    @grade = grade
-    @location = location
+    @description = description
     save
   end
   
