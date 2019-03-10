@@ -11,11 +11,18 @@ class ClimbCatalog::Scraper
   def make_destinations
     # operates on the collection of destinations #get_destinations
     # iterates through and instantiates objects using HTML selectors to scrape specific attrs
-    self.get_destinations.each do |location|
-      destination = Destination.new
-      destination.name = location.css("h3").text
-      destination.type = location.css("h2").text
-      destination.description = location.css("p").text
+    get_destinations.each do |location|
+      ClimbCatalog::Destination.new_from_web(location)
+    end
+  end
+  
+  def print_destinations
+    self.make_destinations
+    Destination.all.each do |location|
+      if location.name
+        puts "#{location.name}:"
+        puts "#{location.description}"
+      end
     end
   end
   

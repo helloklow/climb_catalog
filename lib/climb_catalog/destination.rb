@@ -4,20 +4,27 @@ class ClimbCatalog::Destination
   
   @@all = []
   
-  def self.new_from_web(name)
+  def self.new_from_web#(name)
     #Climb.new.tap do |climb|
       #Scraper.get_page.each do |x, y|
         #climb.send("#{x}=", y)
       #end
     #end
-    self.new(
-      name.css("h3").text.strip, #name
-      name.css("h2").text.strip, #type
-      name.css("p").text.strip #description
-      )
+    
+    #self.new(
+      #name.css("h3").text.strip, #name
+      #name.css("h2").text.strip, #type
+      #name.css("p").text.strip #description
+      #)
+    ClimbCatalog::Scraper.get_destinations.each do |location|
+      destination = Destination.new
+      destination.name = location.css("h3").text
+      destination.type = location.css("h2").text
+      destination.description = location.css("p").text
+    end
   end
   
-  def initialize(name=nil, type=nil, description=nil)
+  def initialize(name, type, description)
     @name = name
     @type = type
     @description = description
