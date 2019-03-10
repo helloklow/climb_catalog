@@ -18,13 +18,14 @@ class ClimbCatalog::Scraper
   
   def print_destinations
     self.make_destinations
-    Destination.all.each do |location|
-      if location.name
+    ClimbCatalog::Destination.all.each do |location|
+      if location.type
         puts "#{location.name}:"
-        puts "#{location.description}"
       end
     end
   end
+  
+  ClimbCatalog::Scraper.new.print_destinations
   
 end
   
