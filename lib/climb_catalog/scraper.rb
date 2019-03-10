@@ -4,7 +4,7 @@ class ClimbCatalog::Scraper
     doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
   end
   
-  def get_destinations # grabs and returns all elements that contain a destination attr via selector
+  def get_destinations # grabs and returns all elements that contain a location attr via selector
     self.get_page.css("h3")
   end
   
@@ -15,17 +15,6 @@ class ClimbCatalog::Scraper
       ClimbCatalog::Destination.new_from_web(location)
     end
   end
-  
-  def print_destinations
-    self.make_destinations
-    ClimbCatalog::Destination.all.each do |location|
-      if location.type
-        puts "#{location.name}:"
-      end
-    end
-  end
-  
-  ClimbCatalog::Scraper.new.print_destinations
   
 end
   

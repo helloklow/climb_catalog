@@ -11,7 +11,9 @@ class ClimbCatalog::CLI
     puts "Please enter Trad Climbing, Sport Climbing, or Bouldering."
     input = gets.strip.capitalize # user inputs climb type
     
-    list_destinations_by_type(input) # this method sorts, then prints list of five boulder, sport, or trad destinations
+    
+    ClimbCatalog::Scraper.new.print_destinations
+    #list_destinations_by_type(input) # this method sorts, then prints list of five boulder, sport, or trad destinations
     
     puts "Which destination would you like beta for?"
     input = gets.strip.capitalize # user inputs destination name
