@@ -39,7 +39,7 @@ class ClimbCatalog::CLI
   def print_destination(by_type) # how do I pass in the type??
     puts "Top #{type.capitalize} Climbing Destinations:"
     ClimbCatalog::Climb.all.each.with_index(by_type) do |climb, index|
-      puts "#{index}. #{climb.destination}"
+      puts "#{index}. #{climb.location}"
     end
   end
   

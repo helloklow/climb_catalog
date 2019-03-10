@@ -18,7 +18,7 @@ class ClimbCatalog::Climb
   end
   
   def initialize(location=nil, type=nil, description=nil)
-    @location = destination 
+    @location = location
     @type = type
     @description = description
     save
