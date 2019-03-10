@@ -39,8 +39,8 @@ class ClimbCatalog::CLI
   end
   
   def print_destinations(type)
-    ClimbCatalog::Destination.all.select do |destinations| 
-      if destinations == destination.type
+    ClimbCatalog::Destination.all.select do |destination| 
+      if destination == destination.type
         puts "Top #{destination.type.capitalize} Climbing Destinations:"
         puts "#{index+1}. #{destination.name}, #{destination.type}"
       end
