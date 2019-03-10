@@ -1,16 +1,16 @@
 class ClimbCatalog::Scraper
   
   def get_page
-    Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
+    Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
   end
   
-  def get_climbs
-    self.get_page.css("tr.route-row .bg-gray-background")
+  def get_destinations
+    self.get_page.css("h3")
   end
   
-  def make_climbs
-      get_climbs.each do |route|
-        ClimbCatalog::Climb.new_from_classic_climbs(route)
+  def make_destinations
+      get_destinations.each do |route|
+        ClimbCatalog::Climb.new_from_web(location)
       end
     end
     

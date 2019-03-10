@@ -9,12 +9,12 @@ class ClimbCatalog::CLI
     puts "What type of climbing are you interested in?" 
     puts "Please enter boulder, sport, or trad."
     input = gets.strip.downcase
-    print_climbs(input) # prints list of five boulder, sport, or trad climbs
+    print_destinations(input) # prints list of five boulder, sport, or trad climbs
   
     puts "Which destination would you like beta for?"
     input = gets.strip.downcase
     climb = ClimbCatalog::Climb.find(input.to_i) # program finds correct destination by name OR index??
-    print.climb(destination)
+    print_destination(location)
     
     choose_more
   end
@@ -36,15 +36,16 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  def print_climbs(by_type) # how do I pass in the type??
+  def print_destination(by_type) # how do I pass in the type??
     puts "Top #{type.capitalize} Climbing Destinations:"
     ClimbCatalog::Climb.all.each.with_index(by_type) do |climb, index|
       puts "#{index}. #{climb.destination}"
     end
   end
   
-  def print_climb(destination)
-    
+  def print_destinations(location)
+    puts "#{climb.location.uppercase}"
+    puts "#{climb.description}"
   end
 
 end

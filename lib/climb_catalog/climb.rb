@@ -1,24 +1,24 @@
 class ClimbCatalog::Climb 
   
-  attr_accessor :destination, :type, :description
+  attr_accessor :location, :type, :description
   
   @@all = []
   
-  def self.new_from_classic_climbs(route)
+  def self.new_from_web(location)
     #Climb.new.tap do |climb|
       #Scraper.get_page.each do |x, y|
         #climb.send("#{x}=", y)
       #end
     #end
     self.new(
-      route.css("tr.route-row .bg-gray-background").text.strip, #destination
+      route.css("tr.route-row .bg-gray-background").text.strip, #location
       route.css("span.small .text-warm .pl-half").text.strip, #type
       route.css("span.rateYDS").text.strip, #description
       )
   end
   
-  def initialize(destination=nil, type=nil, description=nil)
-    @destination = destination 
+  def initialize(location=nil, type=nil, description=nil)
+    @location = destination 
     @type = type
     @description = description
     save
