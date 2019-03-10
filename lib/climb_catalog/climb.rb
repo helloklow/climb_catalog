@@ -40,8 +40,12 @@ class ClimbCatalog::Climb
     self.all[index]
   end
   
- def self.find_by_type(type)
+  def self.find_by_destination(location)
+   self.all[location]
+  end
+  
+  def self.find_by_type(type)
    self.all[type]
- end
+  end
     
 end

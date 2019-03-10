@@ -9,12 +9,12 @@ class ClimbCatalog::Scraper
   end
   
   def make_destinations
-      get_destinations.each do |route|
-        ClimbCatalog::Climb.new_from_web(location)
-      end
+    get_destinations.each do |location|
+      ClimbCatalog::Climb.new_from_web(location)
     end
-    
   end
+    
+end
   
   
   
