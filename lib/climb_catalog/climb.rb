@@ -31,7 +31,7 @@ class ClimbCatalog::Climb
   end
 
   def save
-    self.all << self
+    @@all << self
   end
 
   def self.find_by_index(index)

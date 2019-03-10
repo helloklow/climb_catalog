@@ -1,50 +1,33 @@
 class ClimbCatalog::CLI
   
   def call
-   #ClimbCatalog::Climb.new.create_climbs
-    puts "Welcome, climber!" 
-    climb_type
+    puts "Welcome to the Top International Climbing Destinations!"
+    menu
   end
   
-  def climb_type
-    puts "What type of climb are you interested in? Please enter boulder, sport, or trad."
+  def menu
+    puts "What type of climbing are you interested in?" 
+    puts "Please enter boulder, sport, or trad."
     input = gets.strip.downcase
+    print_climbs(input) # prints list of five boulder, sport, or trad climbs
+  
+    puts "Which destination would you like beta for?"
+    input = gets.strip.downcase
+    climb = ClimbCatalog::Climb.find(input.to_i) # program finds correct destination by name OR index??
+    print.climb(climb)
     
-   # @climbs = ClimbCatalog::Climb.all # program lists all climb instances
-   # @climbs.select do |route|
-      if route.type == input
-        puts "#{route.type.capitalize} climbs in Fort Collins:"
-        puts ""
-        puts "#{index}. #{route.name} - #{route.grade}, #{route.location}"
-      end
-      choose_climb
-    end
-  end
-  
-  def choose_climb
-    puts "Which climb would you like beta for?"
-    input = gets.strip.downcase
-    # program finds correct climb by name or index??
-    #climb = ClimbCatalog::Climb.find(input.to_i) # should this be to_i in my case?
-    if input != nil
-      puts "ALL the info on your climb!"
-    else
-      puts "Sorry, which climb?"
-    end
-    #print_climb(climb) # program returns details for climb
- 
     choose_more
   end
-   
-   def choose_more 
-    puts "Would you like to choose another climb? yes / no"
-     input = gets.strip.downcase
+    
+  def choose_more
+    puts "Would you like to choose another destination? yes / no"
+    input = gets.strip.downcase
     if input == "yes"
-      climb_type
+      menu
     elsif input == "no"
       goodbye
     else
-      puts "Sorry, I don't understand. Please enter yes or no."
+      puts "Sorry, I don't understand."
       choose_more
     end
   end
