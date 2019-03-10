@@ -10,8 +10,8 @@ class ClimbCatalog::CLI
     puts "What type of climb are you interested in? Please enter boulder, sport, or trad."
     input = gets.strip.downcase
     
-    @climbs = ClimbCatalog::Climb.all # program lists all climb instances
-    @climbs.select do |route|
+   # @climbs = ClimbCatalog::Climb.all # program lists all climb instances
+   # @climbs.select do |route|
       if route.type == input
         puts "#{route.type.capitalize} climbs in Fort Collins:"
         puts ""
