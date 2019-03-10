@@ -17,15 +17,23 @@ class ClimbCatalog::Climb
     @type = type
     @grade = grade
     @location = location
-    @@all << self
+    save
   end
   
   def self.all
     @@all
   end
+
+  def save
+    self.all << self
+  end
+
+  def self.find_by_index(index)
+    self.all[index]
+  end
   
- #def self.find(type)
-   #self.all[type]
- #end
+ def self.find_by_type(type)
+   self.all[type]
+ end
     
 end
