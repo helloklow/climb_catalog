@@ -11,9 +11,9 @@ class ClimbCatalog::Climb
       #end
     #end
     self.new(
-      route.css("tr.route-row .bg-gray-background").text.strip, #location
-      route.css("span.small .text-warm .pl-half").text.strip, #type
-      route.css("span.rateYDS").text.strip, #description
+      location.css("h3").text.strip, #location
+      location.css("h2").text.strip, #type
+      location.css("p").text.strip #description
       )
   end
   
@@ -30,6 +30,10 @@ class ClimbCatalog::Climb
 
   def save
     @@all << self
+  end
+  
+  def self.find(id)
+    self.all[id-1]
   end
 
   def self.find_by_index(index)

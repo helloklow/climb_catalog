@@ -1,6 +1,7 @@
 class ClimbCatalog::CLI
   
   def call
+    ClimbCatalog::Scraper.new.make_destinations
     puts "Welcome to the Top International Climbing Destinations!"
     menu
   end
@@ -36,16 +37,16 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  def print_destination(by_type) # how do I pass in the type??
+  def print_destinations(by_type)
     puts "Top #{type.capitalize} Climbing Destinations:"
     ClimbCatalog::Climb.all.each.with_index(by_type) do |climb, index|
       puts "#{index}. #{climb.location}"
     end
   end
   
-  def print_destinations(location)
-    puts "#{climb.location.uppercase}"
-    puts "#{climb.description}"
+  def print_destination(location)
+    puts "#{location}"
+    puts "#{location.description}"
   end
 
 end
