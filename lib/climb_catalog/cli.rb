@@ -11,9 +11,7 @@ class ClimbCatalog::CLI
     puts "Please enter Trad Climbing, Sport Climbing, or Bouldering."
     input = gets.strip.capitalize # user inputs climb type
     
-    
-    ClimbCatalog::Scraper.new.print_destinations
-    #list_destinations_by_type(input) # this method sorts, then prints list of five boulder, sport, or trad destinations
+    print_destinations(input) # this method sorts, then prints list of five boulder, sport, or trad destinations
     
     puts "Which destination would you like beta for?"
     input = gets.strip.capitalize # user inputs destination name
@@ -40,15 +38,18 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  #def print_destinations(by_type)
-    #puts "Top #{type.capitalize} Climbing Destinations:"
-    #puts "#{index+1}. #{climb.location}, #{climb.type}"
-    #ClimbCatalog::Destination.all.select do |type|
-  #end
+  def print_destinations(type)
+    ClimbCatalog::Destination.all.select do |destinations| 
+      if destinations == destination.type
+        puts "Top #{destination.type.capitalize} Climbing Destinations:"
+        puts "#{index+1}. #{destination.name}, #{destination.type}"
+      end
+    end
+  end
   
   def print_destination(name)
     puts "#{name}:"
-    puts "#{name.description}" # .description method returns destination description
+    puts "#{name.description}"
   end
 
 end

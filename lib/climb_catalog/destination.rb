@@ -10,7 +10,6 @@ class ClimbCatalog::Destination
       location.css("h2").text.strip, # h2 provides type attr
       location.css("p").text.strip # p provides description attr
       )
-    end
   end
   
   def initialize(name, type, description)
@@ -20,12 +19,12 @@ class ClimbCatalog::Destination
     save
   end
   
-  def self.all
-    @@all
-  end
-
   def save
     @@all << self
+  end
+  
+  def self.all
+    @@all
   end
   
   def self.find_by_name(name)
