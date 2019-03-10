@@ -5,13 +5,6 @@ class ClimbCatalog::Scraper
   end
   
   def get_climbs
-    #climb = {}
-    #climb[:name] = doc.search("tr.route-row").attribute("href").text
-    #climb[:type] = doc.search("span.small .text-warm .pl-half").text
-    #climb[:grade] = doc.search("span.rateYDS").text
-    #climb[:location] = doc.search("span.text-warm").attribute("href").text
-    #climb
-    
     self.get_page.css("tr.route-row a")
   end
   
@@ -24,31 +17,5 @@ class ClimbCatalog::Scraper
       route.location = route.css("span.text-warm a").text
     end
   end
-  
-  def print_climbs(input)
-    self.make_climbs
-    Climb.all.select do |route|
-      if route.type == input
-        puts "#{route.type.capitalize} climbs in Fort Collins:"
-        puts ""
-        puts "#{index}. #{route.name} - #{route.grade}, #{route.location}"
-      end
-    end
-  end
-
-  
-
-  
-  #Scraper.new.print_climbs
-  
- #def scrape_classic_climbs
-  # self.get_page.css("td").attribute("href").text
-# end
-
-# def create_climbs
-  # scrape_classic_climbs.each do |route|
-    # ClimbCatalog::Climb.new_from_classic_climbs(url)
-  # end
-# end
   
 end

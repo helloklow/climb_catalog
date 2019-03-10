@@ -10,9 +10,15 @@ class ClimbCatalog::CLI
     puts "What type of climb are you interested in? Please enter boulder, sport, or trad."
     input = gets.strip.downcase
     
-    ClimbCatalog::Scraper.print_climbs(input) # program lists climbs of type
-  
-    choose_climb
+    @climbs = ClimbCatalog::Climb.all # program lists all climb instances
+    @climbs.select do |route|
+      if route.type == input
+        puts "#{route.type.capitalize} climbs in Fort Collins:"
+        puts ""
+        puts "#{index}. #{route.name} - #{route.grade}, #{route.location}"
+      end
+      choose_climb
+    end
   end
   
   def choose_climb
@@ -47,10 +53,6 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  
-  
-
-  
   #def print_climbs(type) # how do I pass in the type??
     #puts "#{type.capitalize} climbs in Fort Collins:"
     #puts ""
@@ -58,9 +60,5 @@ class ClimbCatalog::CLI
       #puts "#{index}. #{climb.name}, #{climb.location}"
     #end
   #end
-  
-  #def print_climb(climb)
-    
-  #end
-  
+
 end

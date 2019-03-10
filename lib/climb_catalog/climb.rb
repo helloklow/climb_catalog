@@ -5,7 +5,6 @@ class ClimbCatalog::Climb
   @@all = []
   
   def self.new_from_classic_climbs(url)
-   #climb = Climb.new
     Climb.new.tap do |climb|
       Scraper.get_page.each do |x, y|
         climb.send("#{x}=", y)
@@ -29,24 +28,4 @@ class ClimbCatalog::Climb
    #self.all[type]
  #end
     
- #def grade
-    
- #end
-    
- #def location
-    
- #end
-  
- #def description
-    
- #end
-  
- #def url
-    
- #end
-  
- #def doc
-    #@doc ||= Nokogiri::HTML(open(self.url))
- #end
-  
 end
