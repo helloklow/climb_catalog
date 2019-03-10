@@ -1,23 +1,21 @@
 class ClimbCatalog::CLI
   
   def call
-    ClimbCatalog::Scraper.new.make_destinations
+    ClimbCatalog::Scraper.new.make_destinations # scrapes and instantiates all destinations from webpage, saved in climb class
     puts "Welcome to the Top International Climbing Destinations!"
     menu
   end
   
   def menu
     puts "What type of climbing are you interested in?" 
-    puts "Please enter boulder, sport, or trad."
-    input = gets.strip.downcase
+    puts "Please enter trad climbing, sport climbing, or bouldering."
+    input = gets.strip.capitalize
+    list_destinations_by_type(input) # this method sorts, then prints list of five boulder, sport, or trad destinations
     
-    print_destinations(input) # prints list of five boulder, sport, or trad climbs
   
     puts "Which destination would you like beta for?"
     input = gets.strip.downcase
-    climb = ClimbCatalog::Climb.find_by_destination(input) # program finds correct destinations by type
-    
-    print_destination(location)
+    print_destination(input) # program finds correct destinations and prints details
     
     choose_more
   end
@@ -41,10 +39,8 @@ class ClimbCatalog::CLI
   
   def print_destinations(by_type)
     puts "Top #{type.capitalize} Climbing Destinations:"
-    ClimbCatalog::Climb.all.select do |type|
-      
-      puts "#{index}. #{climb.location}"
-    end
+    puts "#{index+1}. #{climb.location}, #{climb.type}"
+    #ClimbCatalog::Climb.all.select do |type|
   end
   
   def print_destination(location)
