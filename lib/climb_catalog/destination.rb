@@ -4,16 +4,16 @@ class ClimbCatalog::Destination
   
   @@all = []
   
-  def self.new_from_web(location)
+  def self.new_from_web(name)
     #Climb.new.tap do |climb|
       #Scraper.get_page.each do |x, y|
         #climb.send("#{x}=", y)
       #end
     #end
     self.new(
-      location.css("h3").text.strip, #name
-      location.css("h2").text.strip, #type
-      location.css("p").text.strip #description
+      name.css("h3").text.strip, #name
+      name.css("h2").text.strip, #type
+      name.css("p").text.strip #description
       )
   end
   
@@ -40,8 +40,8 @@ class ClimbCatalog::Destination
     self.all[index]
   end
   
-  def self.find_by_name(location)
-   self.all[location]
+  def self.find_by_name(name)
+   self.all[name]
   end
   
   def self.find_by_type(type)
