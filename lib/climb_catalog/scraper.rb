@@ -1,23 +1,25 @@
 class ClimbCatalog::Scraper
+  attr_accessor :name, :type
   
-  attr_accessor :name, :type, :description
-  
-  def self.list_destinations(type)
-    self.scrape_destinations(type)
-  end
-  
-  def self.scrape_destinations(type)
-    array = []
-    
-    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
-    doc.search("div.entry-content .blog-container h3").each do |destination|
-      
-      destination = ClimbCatalog::Destination.new
-      destination.name = doc.search("h3").text.strip, # h3 provides name attr
-      destination.type = doc.search("h2").text.strip, # h2 provides type attr
-      destination.description = doc.search("p").text.strip # p provides description attr
+  def self.list_destinations
+    self.scrape_destinations
   end
  
+ def self.scrape_destinations
+   destinations_array = []
+   
+   doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
+   destinations = doc.search("div.entry-content.blog-container h3")
+   destinations.each_with_index do |destination, i|
+     if index < 15 then
+       new_destination = ClimbCatalog::Scraper.new
+       new_destination.name = destination.css("h3").text
+       new_destination.type = destination.css("h2").text
+       new_destination.description = destination.css("p").text
+       destinations_array[index] = new_destination
+   end
+   destinations_array
+ end
   
 end
 
