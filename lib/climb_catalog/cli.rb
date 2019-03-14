@@ -11,7 +11,7 @@ class ClimbCatalog::CLI
     #puts "Please enter Trad Climbing, Sport Climbing, or Bouldering."
     #input = gets.strip.capitalize # user inputs climb type
     puts "" 
-    puts "Here are the 15 most popular climbing destinations in the world"
+    puts "We have located 15 of the best worldwide climbing destinations:"
     
     list_destinations
     
@@ -39,7 +39,6 @@ class ClimbCatalog::CLI
   end
   
   def list_destinations
-    puts "Top #{destination.type.capitalize} Climbing Destinations:"
     ClimbCatalog::Destination.all.each.with_index(1) do |destination, i|
       puts "#{i}. #{destination.name} - #{destination.type}"
     end

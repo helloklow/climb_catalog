@@ -27,12 +27,12 @@ class ClimbCatalog::Destination
     @@all
   end
   
-  def self.find_by_name(name)
-   self.all[name]
+  def self.find(id)
+    self.all[id-1]
   end
-  
-  def self.find_by_type(type)
-   self.all[type]
+
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
     
 end
