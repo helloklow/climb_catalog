@@ -1,36 +1,36 @@
 class ClimbCatalog::CLI
 
   def call
-    ClimbCatalog::Scraper.new.create_destinations 
     puts "Welcome to the Top International Climbing Destinations!"
+    list_destinations
     menu
+    goodbye
   end
   
+  def list_destinations
+      puts ""
+      puts "We've found 15 of the most iconic worldwide climbing destinations:"
+      puts "1. Chaltén Massif, Argentina - Trad Climbing"
+      puts "2. Mount Arapiles, Australia - Trad Climbing"
+      puts "3. Bugaboos, Canada - Trad Climbing"
+      puts ""
+  end
+   
   def menu
-    #puts "What type of climbing are you interested in?" 
-    #puts "Please enter Trad Climbing, Sport Climbing, or Bouldering."
-    #input = gets.strip.capitalize # user inputs climb type
-    puts "" 
-    puts "We have located 15 of the best worldwide climbing destinations:"
-    
-    list_destinations
-    
-    puts ""
-    puts "Which destination would you like to learn more about?"
-    input = gets.strip
-    destination = ClimbCatalog::Destination.find(input.to_i)
-    
-    print_destination(destination)
-    
-    puts "Would you like to choose another destination? yes / no"
-    input = gets.strip.downcase
-    if input == "yes"
-      menu
-    elsif input == "no"
-      goodbye
-    else
-      puts "Sorry, I don't understand."
-      menu
+    input = nil 
+    while input != "exit"
+      puts "Please enter the number of the destination that you would like to learn about:"
+      input = gets.strip
+      puts ""
+      case input
+      when "1"
+        puts "Chaltén Massif, Argentina description"
+      when "2"
+        puts "Mount Arapiles, Australia description"
+      when "3"
+        puts "Bugaboos, Canada description"
+      end
+      puts ""
     end
   end
   
@@ -38,15 +38,4 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
-  def list_destinations
-    ClimbCatalog::Destination.all.each.with_index(1) do |destination, i|
-      puts "#{i}. #{destination.name} - #{destination.type}"
-    end
-  end
-  
-  def print_destination(destination)
-    puts "#{destination}:"
-    puts "#{destination.type} - #{destination.description}"
-  end
-
 end
