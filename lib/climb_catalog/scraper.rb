@@ -1,16 +1,36 @@
 class ClimbCatalog::Scraper
   
-  def self.scrape_destinations(type)
-    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
-    doc.search("div.entry-content .blog-container").each do |destination|
-      destination = ClimbCatalog::Destination.new
-      destination.name("h3").text.strip, # h3 provides name attr
-      destination.type("h2").text.strip, # h2 provides type attr
-      destination.description("p").text.strip # p provides description attr
-    end
+  attr_accessor :name, :type, :description
+  
+  def self.list_destinations(type)
+    self.scrape_destinations(type)
   end
   
+  def self.scrape_destinations(type)
+    array = []
+    
+    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
+    doc.search("div.entry-content .blog-container h3").each do |destination|
+      
+      destination = ClimbCatalog::Destination.new
+      destination.name = doc.search("h3").text.strip, # h3 provides name attr
+      destination.type = doc.search("h2").text.strip, # h2 provides type attr
+      destination.description = doc.search("p").text.strip # p provides description attr
+  end
+ 
+  
 end
+
+ #def self.scrape_destinations(type)
+   # doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
+   # doc.search("div.entry-content .blog-container").each do |destination|
+     # destination = ClimbCatalog::Destination.new
+      #destination.name = doc.search("h3").text.strip, # h3 provides name attr
+     # destination.type = doc.search("h2").text.strip, # h2 provides type attr
+      #destination.description = doc.search("p").text.strip # p provides description attr
+    #end
+ # end
+
 
 
 #def get_page

@@ -22,6 +22,7 @@ class ClimbCatalog::CLI
     puts "Top #{destination.type.capitalize} Climbing Destinations:"
     ClimbCatalog::Destination.list_by_type.each.with_index(1) do |destination, i|
       puts "#{i}. #{destination.name} - #{destination.type}"
+    end
   end
   
   def menu
