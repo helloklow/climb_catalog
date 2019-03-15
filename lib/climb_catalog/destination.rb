@@ -4,16 +4,20 @@ class ClimbCatalog::Destination
 
   @@all = []
   
-  def save
-    @@all << self
+  def initialize(name=nil, type=nil, description=nil)
+    @name = name
+    @type = type
+    @description = description
+    save
+    self
   end
   
   def self.all
     @@all
   end
   
-  def self.find(input)
-    self.all[input-1]
+  def save
+    @@all << self
   end
   
 end
