@@ -9,8 +9,8 @@ class ClimbCatalog::Scraper
   end
 
   def make_restaurants
-    scrape_restaurants_index.each do |r|
-      ClimbCatalog::Restaurant.new_from_index_page(r)
+    scrape_restaurants_index.each do |d|
+      ClimbCatalog::Destination.create_destinations(d)
     end
   end
 end
