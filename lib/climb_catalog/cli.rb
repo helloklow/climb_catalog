@@ -8,25 +8,21 @@ class ClimbCatalog::CLI
 
   def start
     puts ""
-    puts "Welcome to the Top International Climbing Destinations!"
+    puts "===== Welcome to the Top International Climbing Destinations ====="
     puts ""
     puts "We've located 15 of the most iconic worldwide climbing destinations!"
-    puts "+ Enter 'list' to view all destinations."
-    #puts "+ Enter the destination number to learn more."
-    puts "+ Enter 'exit' to leave."
     puts ""
+    puts "+ Enter 'list' to view all destinations."
+    puts "+ Enter 'exit' to leave."
   end
   
   def menu
     input = nil 
-    puts "What would you like to do?"
+    puts "--- What would you like to do? ---"
     input = gets.strip.downcase
       case input
       when "list"
         puts list_destinations
-        puts "Enter the number of the destination that you would like to learn more about:"
-        answer = gets.strip.to_i
-        print_destination(answer)
       when "exit"
         goodbye
       end
@@ -36,7 +32,17 @@ class ClimbCatalog::CLI
     ClimbCatalog::Scraper.get_destinations
     ClimbCatalog::Scraper.create_destinations
     ClimbCatalog::Destination.all.each.with_index do |d, i|
-      puts "#{d.name}"
+      puts ""
+      puts "#{d.name} - #{d.type}"
+    end
+    puts ""
+    puts "Enter the number of the destination that you would like to learn more about:"
+    answer = gets.strip.to_i
+    if answer > 0
+      print_destination(answer)
+    else
+      puts "Sorry, I don't understand."
+      menu
     end
   end
   
@@ -50,7 +56,8 @@ class ClimbCatalog::CLI
   end
   
   def goodbye
-    puts "Climb on!"
+    puts ""
+    puts "--- Climb on! ---"
     exit
   end
 
