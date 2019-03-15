@@ -1,35 +1,35 @@
 class ClimbCatalog::CLI
 
   def call
+    ClimbCatalog::Scraper.new.make_restaurants
     puts "Welcome to the Top International Climbing Destinations!"
-    list_destinations
+    puts ""
     menu
-    goodbye
   end
-  
-  def list_destinations
-      puts ""
-      puts "We've found 15 of the most iconic worldwide climbing destinations:"
-      @destinations = ClimbCatalog::Destination.all_destinations
-      @destinations.each do |destination|
-        puts "#{destination.name} - #{destination.type}"
-      end
-  end
-   
+
   def menu
-    input = nil 
-    while input != "exit"
-      puts "Enter the number of the destination that you would like to learn about:"
-      puts "Enter 'all' to see all destinations again, or 'exit' to leave."
-      input = gets.strip
-      
-      if input.to_i > 0 # if input is an integer and not a string 
-        puts @destinations[input.to_i-1] # puts the destination at the correct index
-      elsif input == "all"
-        list_destinations
-      else
-        puts "I'm sorry, I don't understand."
-      end
+    puts "We've found 15 of the most iconic worldwide climbing destinations:"
+    list_destinations
+    
+    puts "Enter the number of the destination you would like to learn more about:"
+    input = gets.strip.to_i
+
+    destination = ClimbCatalog::Destination.find(input)
+
+    print_destination(destination)
+    
+    puts "Would you like to select another destination? (Y / N)"
+    input = gets.strip.downcase
+    
+    if input == "y"
+      menu
+    elsif input == "n"
+      goodbye
+    else
+      puts ""
+      puts "I'm sorry, I don't understand."
+      puts ""
+      menu
     end
   end
   
@@ -37,4 +37,18 @@ class ClimbCatalog::CLI
     puts "Climb on!"
   end
   
+  def list_destinations
+    ClimbCatalog::Destination.all.each do |destination|
+      puts "#{destination.name} - #{destination.type}"
+      puts ""
+    end
+  end
+
+  def print_destination(destination)
+    puts ""
+    puts "#{destination.name} - #{destination.type}"
+    puts "#{destination.description}"
+    puts ""
+  end
+
 end
