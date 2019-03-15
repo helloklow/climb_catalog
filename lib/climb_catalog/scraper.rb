@@ -8,14 +8,13 @@ class ClimbCatalog::Scraper
 
   def self.create_climbs
     climbs.each do |c|
-      name = c.css("span.text-warm a").text.strip
-      location = c.css("span.rateYDS").text.strip
-      rating = c.css("span.rateYDS").text.strip
-      type = c.css("span.small.text-warm.pl-half span").text.strip
-      url = c.css("span.text-warm href").text.strip
-      destination = ClimbCatalog::Destination.new(name, type, description)
-      destination.save
+      name = c.css("td a strong").text.strip
+      location = c.css("td span.small span.text-warm a").text.strip
+      rating = c.css("td span.rateYDS").text.strip
+      type = c.css("td span.small.text-warm.pl-half span").text.strip
+      url = c.css("td href").text.strip
+      climb = ClimbCatalog::Climb.new(name, location, rating, type, url)
+      climb.save
     end
   end
-  
 end

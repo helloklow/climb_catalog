@@ -1,14 +1,15 @@
 class ClimbCatalog::Climb
 
-  attr_accessor :name, :location, :rating, :type
+  attr_accessor :name, :location, :rating, :type, :url
 
   @@all = []
   
-  def initialize(name, location, rating, type)
+  def initialize(name, location, rating, type, url)
     @name = name
     @location = location
     @rating = rating
     @type = type
+    @url = url
   end
   
   def self.all
