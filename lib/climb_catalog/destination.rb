@@ -11,7 +11,7 @@ class ClimbCatalog::Destination
     save
   end
 
-  def self.create_destinations(d)
+  def self.new_destination(d)
     self.new(
       d.css("h3").text.strip,
       d.css("h2").text.strip,
@@ -29,6 +29,14 @@ class ClimbCatalog::Destination
 
   def self.find(id)
     self.all[id-1]
+  end
+  
+  def name
+    @name ||= doc.css("h3").text.strip
+  end
+  
+  def type
+    @type ||= doc.css("h2").text.strip
   end
 
   def description

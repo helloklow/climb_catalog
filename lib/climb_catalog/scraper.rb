@@ -1,16 +1,16 @@
 class ClimbCatalog::Scraper
 
   def get_page
-    Nokogiri::HTML(open("https://www.theworlds50best.com/list/1-50-winners"))
+    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
   end
 
-  def scrape_restaurants_index
-     self.get_page.css("div#t1-50 li")
+  def get_destinations
+     self.get_page.css("div.entry-content h3")
   end
 
-  def make_restaurants
-    scrape_restaurants_index.each do |d|
-      ClimbCatalog::Destination.create_destinations(d)
+  def create_destinations
+    get_destinations.each do |d|
+      ClimbCatalog::Destination.new_destination(d)
     end
   end
 end

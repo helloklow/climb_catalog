@@ -1,7 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
-    ClimbCatalog::Scraper.new.make_restaurants
+    ClimbCatalog::Scraper.new.create_destinations
     puts "Welcome to the Top International Climbing Destinations!"
     puts ""
     menu
