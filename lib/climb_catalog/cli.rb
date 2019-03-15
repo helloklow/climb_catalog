@@ -4,6 +4,7 @@ class ClimbCatalog::CLI
     start
     puts ""
     menu
+    list_destinations
   end
 
   def start
@@ -22,7 +23,7 @@ class ClimbCatalog::CLI
     input = gets.strip.downcase
       case input
       when "list"
-        puts list_destinations
+        list_destinations
       when "exit"
         goodbye
       end

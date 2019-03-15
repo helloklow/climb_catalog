@@ -8,7 +8,7 @@ class ClimbCatalog::Destination
     @name = name
     @type = type
     @description = description
-    save
+    #save
   end
   
   def self.all
