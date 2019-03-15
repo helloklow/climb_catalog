@@ -1,5 +1,22 @@
 class ClimbCatalog::Scraper
 
+  def scrape_destinations
+    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
+    doc.search("div.entry-content h3").each do |d|
+      destination = ClimbCatalog::Destination.new 
+      destination.name = d.css("h3").text.strip
+      destination.type = d.css("h2").text.strip
+      destination.description = d.css("p").text.strip
+      destination.save
+    end
+  end
+  
+end
+
+
+
+
+=begin
   def get_page
     doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
   end
@@ -13,14 +30,7 @@ class ClimbCatalog::Scraper
       ClimbCatalog::Destination.new_destination(d)
     end
   end
-end
-
-
-
-
-
-
-
+=end
 
 
 

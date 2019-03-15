@@ -4,6 +4,27 @@ class ClimbCatalog::Destination
 
   @@all = []
   
+  def save
+    @@all << self
+  end
+  
+  def self.all
+    @@all
+  end
+  
+  def self.find(input)
+    self.all[input-1]
+  end
+  
+end
+
+
+
+
+
+
+
+=begin
   def initialize(name, type, description)
     @name = name
     @type = type
@@ -18,16 +39,8 @@ class ClimbCatalog::Destination
       d.css("p").text,strip
       )
   end
-
-  def self.all
-    @@all
-  end
   
-  def save
-    @@all << self
-  end
-
-  def self.find(id)
+def self.find(id)
     self.all[id-1]
   end
   
@@ -46,16 +59,7 @@ class ClimbCatalog::Destination
   def doc
     @doc ||= Nokogiri::HTML(open(self.url))
   end
-end
-
-
-
-
-
-
-
-
-
+=end
 
 
 

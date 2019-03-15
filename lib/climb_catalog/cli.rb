@@ -1,7 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
-    ClimbCatalog::Scraper.new.create_destinations
+    ClimbCatalog::Scraper.new.scrape_destinations
     puts "Welcome to the Top International Climbing Destinations!"
     puts ""
     menu
@@ -14,9 +14,9 @@ class ClimbCatalog::CLI
     puts "Enter the number of the destination you would like to learn more about:"
     input = gets.strip.to_i
 
-    destination = ClimbCatalog::Destination.find(input)
+    d = ClimbCatalog::Destination.find(input)
 
-    print_destination(destination)
+    print_destination(d)
     
     puts "Would you like to select another destination? (Y / N)"
     input = gets.strip.downcase
@@ -38,13 +38,13 @@ class ClimbCatalog::CLI
   end
   
   def list_destinations
-    ClimbCatalog::Destination.all.each do |destination|
-      puts "#{destination.name} - #{destination.type}"
+    ClimbCatalog::Destination.all.each do |d|
+      puts "#{d.name} - #{d.type}"
       puts ""
     end
   end
 
-  def print_destination(destination)
+  def print_destination(d)
     puts ""
     puts "#{destination.name} - #{destination.type}"
     puts "#{destination.description}"
