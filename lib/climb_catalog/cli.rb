@@ -12,13 +12,13 @@ class ClimbCatalog::CLI
     puts ""
     puts "We've located 15 of the most iconic worldwide climbing destinations!"
     puts ""
-    puts "+ Enter 'list' to view all destinations."
-    puts "+ Enter 'exit' to leave."
+    puts "- Enter 'list' to view all destinations."
+    puts "- Enter 'exit' to leave."
   end
   
   def menu
     input = nil 
-    puts "--- What would you like to do? ---"
+    puts "What would you like to do?"
     input = gets.strip.downcase
       case input
       when "list"
@@ -57,7 +57,7 @@ class ClimbCatalog::CLI
   
   def goodbye
     puts ""
-    puts "--- Climb on! ---"
+    puts "===== Climb on! ====="
     exit
   end
 

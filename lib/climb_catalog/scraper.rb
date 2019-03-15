@@ -2,7 +2,7 @@ class ClimbCatalog::Scraper
 
  def self.get_destinations
     @doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
-    @destinations = @doc.css("div.single-column-css div.entry-content h3")
+    @destinations = @doc.css("div.entry-content h3")
   end
 
   def self.create_destinations
