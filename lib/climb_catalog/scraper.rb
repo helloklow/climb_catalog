@@ -1,82 +1,21 @@
 class ClimbCatalog::Scraper
 
- def self.get_destinations
+ def self.get_climbs
     doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
-    destinations = doc.css("div.entry-content.blog-container h3")
+    climbs = doc.css("tr.route-row") # scrapes each table row
     binding.pry
   end
 
-  def self.create_destinations
-        destinations.each do |d|
-        name = d.css("h3").text.strip
-        type = d.css("h2").text.strip
-        description = d.css("p").text.strip
-        destination = ClimbCatalog::Destination.new(name, type, description)
-        destination.save
+  def self.create_climbs
+    climbs.each do |c|
+      name = c.css("span.text-warm a").text.strip
+      location = c.css("span.rateYDS").text.strip
+      rating = c.css("span.rateYDS").text.strip
+      type = c.css("span.small.text-warm.pl-half span").text.strip
+      url = c.css("span.text-warm href").text.strip
+      destination = ClimbCatalog::Destination.new(name, type, description)
+      destination.save
     end
   end
   
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=begin
-  def get_page
-    doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
-  end
-
-  def get_destinations
-     self.get_page.css("div.entry-content h3")
-  end
-
-  def create_destinations
-    get_destinations.each do |d|
-      ClimbCatalog::Destination.new_destination(d)
-    end
-  end
-=end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#class ClimbCatalog::Scraper
-  
-  #def get_page
-   # doc = Nokogiri::HTML(open("https://www.osprey.com/stories/15-iconic-climbing-destinations-outside-us/"))
-  #end
-  
-  #def scrape_destinations # grabs and returns all elements that contain a location attr via selector
-   # self.get_page.css("div.entry-content h3")
- # end
-  
- # def create_destinations
-     # operates on the collection of scraped destinations
-     # iterates through and instantiates objects using HTML selectors to scrape specific attrs (defined in destination class)
-   # scrape_destinations.each do |location|
-      #ClimbCatalog::Destination.new_from_web(location)
-    #end
- # end
-  
-#end
-
