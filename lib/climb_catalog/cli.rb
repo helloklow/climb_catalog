@@ -32,6 +32,7 @@ class ClimbCatalog::CLI
       elsif input == "exit"
         goodbye
       else
+        puts ""
         puts "Sorry, I don't understand."
         select_type
       end
@@ -52,7 +53,9 @@ class ClimbCatalog::CLI
       elsif input == "exit"
         goodbye
       else
+        puts ""
         puts "Sorry, I don't understand."
+        select_climb
       end
     end
   end
@@ -60,6 +63,7 @@ class ClimbCatalog::CLI
   def goodbye
     puts ""
     puts "===== Climb on! ====="
+    exit
   end
 
 end
