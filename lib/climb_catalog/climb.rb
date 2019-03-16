@@ -20,4 +20,8 @@ class ClimbCatalog::Climb
     @@all << self
   end
   
+  def self.find(i)
+    self.all[i.to_i - 1]
+  end
+  
 end

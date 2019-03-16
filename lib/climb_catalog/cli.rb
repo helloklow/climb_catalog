@@ -3,11 +3,10 @@ class ClimbCatalog::CLI
   def call
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
-    menu
-    list_climbs
+    select_type
   end
 
-  def menu
+  def select_type
     puts ""
     puts "We've located the following types of climbing in your area:"
     ClimbCatalog::Climb.all.each.with_index(1) do |c, i|
@@ -24,7 +23,7 @@ class ClimbCatalog::CLI
         menu
       elsif input <= ClimbCatalog::Climb.all.size 
         the_climb = ClimbCatalog::Climb.find(input)
-        puts "the_climb.name"
+        puts "#{the_climb.name}"
       else
         puts "Sorry, I don't understand."
       end
