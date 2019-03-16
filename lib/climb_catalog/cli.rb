@@ -6,7 +6,7 @@ class ClimbCatalog::CLI
     puts "===== Welcome, Colorado Climber! ====="
     puts ""
     puts "We're here to share Mountain Project's classic climbs for Northern Colorado!"
-    puts "You may enter 'list' to see types again or 'exit' to quit at any time."
+    puts "Enter 'list' to see types again or 'exit' to quit at any time."
     select_type
   end
 
