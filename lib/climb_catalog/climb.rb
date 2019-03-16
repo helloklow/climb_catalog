@@ -73,7 +73,7 @@ class ClimbCatalog::Climb
   end
   
   def self.find(i)
-    self.all[i.to_i - 1]
+    self.all.find {|i| i == ClimbCatalog::Climb.name}
   end
   
 end

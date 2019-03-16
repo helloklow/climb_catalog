@@ -48,7 +48,7 @@ class ClimbCatalog::CLI
     input = gets.strip.downcase
       if input == "list"
         select_type
-      elsif input == ClimbCatalog::Climb.find(input) # be sure to downcase the climb names in this method!!!
+      elsif input == ClimbCatalog::Climb.find(input.capitalize) # route names are capitalized
         puts "The climb's URL" # will actually send the user to the URL in their browser!!!
       elsif input == "exit"
         goodbye
