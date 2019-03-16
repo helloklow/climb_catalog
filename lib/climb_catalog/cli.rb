@@ -1,6 +1,8 @@
 class ClimbCatalog::CLI
 
   def call
+    ClimbCatalog::Scraper.get_climbs
+    ClimbCatalog::Scraper.create_climbs
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
     select_type
@@ -9,7 +11,7 @@ class ClimbCatalog::CLI
   def select_type
     puts ""
     puts "We've located the following types of climbing in your area:"
-    ClimbCatalog::Climb.all.each.with_index(1) do |c, i|
+    ClimbCatalog::Climb.all.each do |c, i|
       puts "#{i}. #{c.type}"
     end
     puts ""
@@ -18,33 +20,32 @@ class ClimbCatalog::CLI
     
     input = nil 
     while input != "exit"
-    input = gets.strip.to_i
+    input = gets.strip.downcase
       if input == "list"
         menu
-      elsif input <= ClimbCatalog::Climb.all.size 
-        the_climb = ClimbCatalog::Climb.find(input)
-        puts "#{the_climb.name}"
+      elsif input.to_i.between?(0, ClimbCatalog::Climb.all.size) # if user selects a type by number
+        the_climbs = ClimbCatalog::Climb.find(input) # find climbs of that type
+        puts "#{the_climbs.name} at #{the_climbs.location}"
       else
         puts "Sorry, I don't understand."
       end
     end
   end
   
-  def list_climbs
-    ClimbCatalog::Scraper.get_climbs
-    ClimbCatalog::Scraper.create_climbs
-    ClimbCatalog::Climb.all.each.with_index do |c, i|
-      puts ""
-      puts "#{c.name} at #{c.location} is #{c.type}"
-    end
+  def select_climb
     puts ""
-    puts "Which route would you like beta for?"
-    answer = gets.strip.to_i
-    if answer > 0
-      print_destination(answer)
-    else
-      puts "Sorry, I don't understand."
-      menu
+    puts "Enter the name of the route you would like beta for:"
+    
+    input = nil 
+    while input != "exit"
+    input = gets.strip.capitalize
+      if input == "list"
+        menu
+      elsif input == ClimbCatalog::Climb.find(input)
+        puts "The climb's URL" # should actually send the user to the URL in their browser
+      else
+        puts "Sorry, I don't understand."
+      end
     end
   end
   

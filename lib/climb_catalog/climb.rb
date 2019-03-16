@@ -24,4 +24,8 @@ class ClimbCatalog::Climb
     self.all[i.to_i - 1]
   end
   
+  def list_type
+    self.all.find #finish this method!
+  end
+  
 end
