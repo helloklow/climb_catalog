@@ -21,17 +21,14 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == "boulder"
-        ClimbCatalog::Climb.all.select do |route|
-          if route.type == input.capitalize # route types are capitalized
-            puts "#{route.name}, #{route.location} - #{route.rating} (#{route.type})"
-          end
-        end
+        print_climbs_by_type(input)
+        binding.pry
         select_climb
       elsif input == "sport"
-        ClimbCatalog::Climb.list_sport
+        print_climbs_by_type(input)
         select_climb
       elsif input == "trad"
-        ClimbCatalog::Climb.list_trad
+        print_climbs_by_type(input)
         select_climb
       elsif input == "exit"
         goodbye
@@ -39,6 +36,14 @@ class ClimbCatalog::CLI
         puts ""
         puts "Sorry, invalid input. Please try again."
         select_type
+      end
+    end
+  end
+  
+  def print_climbs_by_type(input)
+    ClimbCatalog::Climb.all.select do |route| 
+      if route.type == input.capitalize # route types are capitalized
+        puts "#{route.name}, #{route.location} - #{route.rating} (#{route.type})"
       end
     end
   end
