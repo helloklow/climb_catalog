@@ -21,7 +21,11 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == "boulder"
-        ClimbCatalog::Climb.list_boulder
+        ClimbCatalog::Climb.all.select do |route|
+          if route.type == input.capitalize # route types are capitalized
+            puts "#{route.name}, #{route.location} - #{route.type}"
+          end
+        end
         select_climb
       elsif input == "sport"
         ClimbCatalog::Climb.list_sport
