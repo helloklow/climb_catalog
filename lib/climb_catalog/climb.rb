@@ -28,12 +28,12 @@ class ClimbCatalog::Climb
   def self.get_climbs
     climbs = []
 
-     climbs << self.get_boulder
-     climbs << self.get_sport
-     climbs << self.get_trad
+     climbs << self.list_boulder
+     climbs << self.list_sport
+     climbs << self.list_trad
   end
 
-  def self.get_boulder
+  def self.list_boulder
     html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 
@@ -46,7 +46,7 @@ class ClimbCatalog::Climb
     boulder = self.new(name, location, rating, type, url)
   end
 
-  def self.get_sport
+  def self.list_sport
     html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 
@@ -59,7 +59,7 @@ class ClimbCatalog::Climb
     sport = self.new(name, location, rating, type, url)
   end
 
-  def self.get_trad
+  def self.list_trad
     html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 

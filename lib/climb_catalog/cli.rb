@@ -21,13 +21,13 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == "boulder"
-        ClimbCatalog::Climb.get_boulder
+        ClimbCatalog::Climb.list_boulder
         select_climb
       elsif input == "sport"
-        ClimbCatalog::Climb.get_sport
+        ClimbCatalog::Climb.list_sport
         select_climb
       elsif input == "trad"
-        ClimbCatalog::Climb.get_trad
+        ClimbCatalog::Climb.list_trad
         select_climb
       elsif input == "exit"
         goodbye
@@ -63,6 +63,7 @@ class ClimbCatalog::CLI
   def goodbye
     puts ""
     puts "===== Climb on! ====="
+    exit # why doesn't program exit from select_climb if this is removed?
   end
 
 end
