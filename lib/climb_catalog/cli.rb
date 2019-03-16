@@ -63,7 +63,6 @@ class ClimbCatalog::CLI
   def goodbye
     puts ""
     puts "===== Climb on! ====="
-    exit
   end
 
 end
