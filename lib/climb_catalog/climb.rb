@@ -21,8 +21,8 @@ class ClimbCatalog::Climb
     @@all << self.get_climbs
   end
   
-  def self.find(input)
-    self.all[input]
+  def self.find(i)
+    self.all.find {|i| i == ClimbCatalog::Climb.name}
   end
 
   def self.get_climbs
@@ -34,8 +34,7 @@ class ClimbCatalog::Climb
   end
 
   def self.list_boulder
-    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
 
     name = doc.css("td a strong").text.strip
     location = doc.css("td span.small span.text-warm a").text.strip
@@ -47,8 +46,7 @@ class ClimbCatalog::Climb
   end
 
   def self.list_sport
-    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
 
     name = doc.css("td a strong").text.strip
     location = doc.css("td span.small span.text-warm a").text.strip
@@ -60,8 +58,7 @@ class ClimbCatalog::Climb
   end
 
   def self.list_trad
-    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
 
     name = doc.css("td a strong").text.strip
     location = doc.css("td span.small span.text-warm a").text.strip
@@ -70,10 +67,6 @@ class ClimbCatalog::Climb
     url = doc.css("td href").text.strip
 
     trad = self.new(name, location, rating, type, url)
-  end
-  
-  def self.find(i)
-    self.all.find {|i| i == ClimbCatalog::Climb.name}
   end
   
 end

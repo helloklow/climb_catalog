@@ -49,7 +49,10 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == ClimbCatalog::Climb.find(input.capitalize) # route names are capitalized
-        puts "The climb's URL" # will actually send the user to the URL in their browser!!!
+        route = ClimbCatalog::Climb.name
+        url = ClimbCatalog::Climb.url
+        puts "Connecting to #{route} on Mountain Project:"
+        puts "#{url}" #'open #{url}'
       elsif input == "exit"
         goodbye
       else
