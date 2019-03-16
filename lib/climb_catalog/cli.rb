@@ -1,8 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
-    ClimbCatalog::Scraper.get_climbs
-    ClimbCatalog::Scraper.create_climbs
+    ClimbCatalog::Climb.get_climbs
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
     puts ""
@@ -22,13 +21,13 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == "boulder"
-        ClimbCatalog::Climb.show_boulders
+        ClimbCatalog::Climb.get_boulder
         select_climb
       elsif input == "sport"
-        ClimbCatalog::Climb.show_sport
+        ClimbCatalog::Climb.get_sport
         select_climb
       elsif input == "trad"
-        ClimbCatalog::Climb.show_trad
+        ClimbCatalog::Climb.get_trad
         select_climb
       elsif input == "exit"
         goodbye

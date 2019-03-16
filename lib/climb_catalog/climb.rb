@@ -18,48 +18,58 @@ class ClimbCatalog::Climb
   end
   
   def save
-    @@all << self.scrape_climbs
+    @@all << self.get_climbs
   end
   
-  def self.find_climb(i)
-    self.all[i.to_i - 1]
+  def self.find(input)
+    self.all[input]
   end
 
-  def self.scrape_climbs
+  def self.get_climbs
     climbs = []
 
-     climbs << self.scrape_breakfast
-     climbs << self.scrape_lunch
-     climbs << self.scrape_dinner
+     climbs << self.get_boulder
+     climbs << self.get_sport
+     climbs << self.get_trad
   end
 
-  def self.scrape_breakfast
-    html = open("https://www.tasteaholics.com/recipes/low-carb-breakfast/")
+  def self.get_boulder
+    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 
-    title = doc.css("div.entry-title").text.gsub(/\t/, "")
-    category = doc.css("h1.title-heading-center").text
-    breakfast = self.new(title, category)
+    name = doc.css("td a strong").text.strip
+    location = doc.css("td span.small span.text-warm a").text.strip
+    rating = doc.css("td span.rateYDS").text.strip
+    type = doc.css("td span.small.text-warm.pl-half span").text.strip
+    url = doc.css("td href").text.strip
+      
+    boulder = self.new(name, location, rating, type, url)
   end
 
-  def self.scrape_lunch
-    html = open("https://www.tasteaholics.com/recipes/low-carb-lunch/")
+  def self.get_sport
+    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 
-    title = doc.css("div.entry-title").text.gsub(/\t/, "")
-    category = doc.css("h1.title-heading-center").text
+    name = doc.css("td a strong").text.strip
+    location = doc.css("td span.small span.text-warm a").text.strip
+    rating = doc.css("td span.rateYDS").text.strip
+    type = doc.css("td span.small.text-warm.pl-half span").text.strip
+    url = doc.css("td href").text.strip
 
-    lunch = self.new(title, category)
+    sport = self.new(name, location, rating, type, url)
   end
 
-  def self.scrape_dinner
-    html = open("https://www.tasteaholics.com/recipes/low-carb-dinners/")
+  def self.get_trad
+    html = open("https://www.mountainproject.com/area/classics/105800315/fort-collins")
     doc = Nokogiri::HTML(html)
 
-    title = doc.css("div.entry-title").text.gsub(/\t/, "")
-    category = doc.css("h1.title-heading-center").text
+    name = doc.css("td a strong").text.strip
+    location = doc.css("td span.small span.text-warm a").text.strip
+    rating = doc.css("td span.rateYDS").text.strip
+    type = doc.css("td span.small.text-warm.pl-half span").text.strip
+    url = doc.css("td href").text.strip
 
-    dinner = self.new(title, category)
+    trad = self.new(name, location, rating, type, url)
   end
   
   def self.find(i)
