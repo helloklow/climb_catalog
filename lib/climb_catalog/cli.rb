@@ -33,7 +33,7 @@ class ClimbCatalog::CLI
         goodbye
       else
         puts ""
-        puts "Sorry, I don't understand."
+        puts "Sorry, invalid input. Please try again."
         select_type
       end
     end
@@ -54,7 +54,7 @@ class ClimbCatalog::CLI
         goodbye
       else
         puts ""
-        puts "Sorry, I don't understand."
+        puts "Sorry, invalid input. Please try again."
         select_climb
       end
     end
