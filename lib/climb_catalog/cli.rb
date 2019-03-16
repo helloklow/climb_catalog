@@ -28,7 +28,6 @@ class ClimbCatalog::CLI
         select_climb
       elsif input == "trad"
         print_climbs_by_type(input)
-        binding.pry
         select_climb
       elsif input == "exit"
         goodbye
@@ -43,7 +42,7 @@ class ClimbCatalog::CLI
   def print_climbs_by_type(input)
     ClimbCatalog::Climb.all.select do |route| 
       if route.type == input.capitalize # route types are capitalized
-        puts "#{route.name}, #{route.location} - #{route.rating} (#{route.type})"
+        puts "- #{route.name} is a #{route.rating} rated #{route.type.downcase} climb"
       end
     end
   end
