@@ -23,7 +23,7 @@ class ClimbCatalog::CLI
       elsif input == "boulder"
         ClimbCatalog::Climb.all.select do |route|
           if route.type == input.capitalize # route types are capitalized
-            puts "#{route.name}, #{route.location} - #{route.type}"
+            puts "#{route.name}, #{route.location} - #{route.rating} (#{route.type})"
           end
         end
         select_climb
