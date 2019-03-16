@@ -1,7 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
-    ClimbCatalog::Climb.get_climbs
+    ClimbCatalog::Climb.scrape_climbs
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
     puts ""
@@ -22,13 +22,13 @@ class ClimbCatalog::CLI
         select_type
       elsif input == "boulder"
         print_climbs_by_type(input)
-        binding.pry
         select_climb
       elsif input == "sport"
         print_climbs_by_type(input)
         select_climb
       elsif input == "trad"
         print_climbs_by_type(input)
+        binding.pry
         select_climb
       elsif input == "exit"
         goodbye
