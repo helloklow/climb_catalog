@@ -2,7 +2,7 @@ class ClimbCatalog::CLI
 
   def call
     puts ""
-    puts "...Loading climbs..."
+    puts "...loading climbs..."
     ClimbCatalog::Scraper.scrape_climbs
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
