@@ -56,16 +56,13 @@ class ClimbCatalog::CLI
     input = nil
     climb = nil
     while input != "exit"
-    input = gets.strip.split(' ').map(&:capitalize).join(' ')
-      if input == "List"
+    input = gets.strip.downcase
+      if input == "list"
         select_type
       elsif climb == ClimbCatalog::Climb.find_by_name(input)
         binding.pry
-        puts ""
-        puts "Connecting to #{climb.name} on Mountain Project:"
-        puts "#{climb.url}" #'open #{url}'
-        choose_more
-      elsif input == "Exit"
+        print_climb_by_name
+      elsif input == "exit"
         goodbye
       else
         puts ""
@@ -77,8 +74,12 @@ class ClimbCatalog::CLI
   
   def print_climb_by_name(input)
     ClimbCatalog::Climb.all.select do |route| 
-      if route.type == input.capitalize # route types are capitalized
-        puts "- '#{route.name}' (#{route.type}) #{route.rating}"
+      if route.name == input.split(' ').map(&:capitalize).join(' ') # route names are capitalized
+        puts ""
+        puts "Connecting to #{route.name} on Mountain Project:"
+        puts "#{route.url}" #'open #{url}'
+        puts ""
+        choose_more
       end
     end
   end
