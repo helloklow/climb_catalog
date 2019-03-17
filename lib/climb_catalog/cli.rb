@@ -1,6 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
+    puts ""
     puts "...Loading climbs..."
     ClimbCatalog::Climb.scrape_climbs
     puts ""
@@ -58,10 +59,7 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif input == ClimbCatalog::Climb.find(input.capitalize) # route names are capitalized
-        route = ClimbCatalog::Climb.name
-        url = ClimbCatalog::Climb.url
-        puts "Connecting to #{route} on Mountain Project:"
-        puts "#{url}" #'open #{url}'
+        connect_to_climb_page
       elsif input == "exit"
         goodbye
       else
@@ -72,10 +70,18 @@ class ClimbCatalog::CLI
     end
   end
   
+  def connect_to_climb_page
+    route = ClimbCatalog::Climb.name
+    url = ClimbCatalog::Climb.url
+    puts ""
+    puts "Connecting to #{route} on Mountain Project:"
+    puts "#{url}" #'open #{url}'
+  end
+  
   def goodbye
     puts ""
     puts "===== Climb on! ====="
-    exit # why doesn't program exit from select_climb if this is removed?
+    exit # why won't program exit properly from select_climb if this is removed?
   end
 
 end

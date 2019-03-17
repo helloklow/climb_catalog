@@ -21,9 +21,9 @@ class ClimbCatalog::Climb
   end
   
   def self.find(input)
-    self.all.find {|route| route.name == input}
+    self.all.find { |climb| climb.name == input.capitalize }
   end
-
+ 
   def self.scrape_climbs
     doc = Nokogiri::HTML(open("https://www.mountainproject.com/area/classics/105800315/fort-collins"))
     row = doc.css("div.table-responsive table.table.route-table.hidden-xs-down tr.route-row")
