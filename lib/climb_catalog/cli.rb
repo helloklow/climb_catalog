@@ -55,16 +55,7 @@ class ClimbCatalog::CLI
     
     input = nil
     climb = nil
-    while input != "exit"
-    input = gets.strip.downcase
-      if input == "list"
-        select_type
-      elsif climb == ClimbCatalog::Climb.find_by_name(input)
-        puts ""
-        puts "Connecting to #{climb.name} on Mountain Project:"
-        puts "#{climb.url}" #'open #{url}'
-        choose_more
-      elsif input == "exit"
+      elsif input == "Exit"
         goodbye
       else
         puts ""
