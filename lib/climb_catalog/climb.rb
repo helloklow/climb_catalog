@@ -21,7 +21,7 @@ class ClimbCatalog::Climb
   end
   
   def self.find(input)
-    self.all.find { |climb| climb.name == input.capitalize }
+    self.all.find { |climb| climb.name == input }
   end
  
   def self.scrape_climbs
