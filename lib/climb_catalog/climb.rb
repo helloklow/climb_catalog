@@ -20,8 +20,8 @@ class ClimbCatalog::Climb
     @@all << self
   end
   
-  def self.find(input)
-    self.all.find { |climb| climb.name == input }
+  def self.find_by_name(input)
+    self.all.find { |climb| climb.name == input.capitalize } # route names are capitalized
   end
  
   def self.scrape_climbs

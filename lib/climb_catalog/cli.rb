@@ -58,7 +58,7 @@ class ClimbCatalog::CLI
     input = gets.strip.downcase
       if input == "list"
         select_type
-      elsif input == ClimbCatalog::Climb.find(input.capitalize) # route names are capitalized
+      elsif input == ClimbCatalog::Climb.find_by_name(input)
         connect_to_climb_page
       elsif input == "exit"
         goodbye
