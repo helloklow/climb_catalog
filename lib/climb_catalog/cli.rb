@@ -53,12 +53,13 @@ class ClimbCatalog::CLI
     puts ""
     puts "Enter the name of the route you would like beta for:"
     
-    input = nil 
+    input = nil
+    climb = nil
     while input != "exit"
     input = gets.strip.downcase
       if input == "list"
         select_type
-      elsif input == ClimbCatalog::Climb.find_by_name(input)
+      elsif climb == ClimbCatalog::Climb.find_by_name(input)
         connect_to_climb_page
       elsif input == "exit"
         goodbye
@@ -71,11 +72,31 @@ class ClimbCatalog::CLI
   end
   
   def connect_to_climb_page
-    route = ClimbCatalog::Climb.name
-    url = ClimbCatalog::Climb.url
+    #route = ClimbCatalog::Climb.name
+    #url = ClimbCatalog::Climb.url
     puts ""
-    puts "Connecting to #{route} on Mountain Project:"
-    puts "#{url}" #'open #{url}'
+    puts "Connecting to #{ClimbCatalog::Climb.name} on Mountain Project:"
+    puts "#{ClimbCatalog::Climb.url}" #'open #{url}'
+    choose_more
+  end
+  
+  def choose_more
+    puts ""
+    puts "Enter 'list' to select a new climb or 'exit' to quit:"
+    
+    input = nil
+    while input != "exit"
+    input = gets.strip.downcase
+      if input == "list"
+        select_type
+      elsif input == "exit"
+        goodbye
+      else
+        puts ""
+        puts "Sorry, invalid input. Please try again."
+        select_type
+      end
+    end
   end
   
   def goodbye
