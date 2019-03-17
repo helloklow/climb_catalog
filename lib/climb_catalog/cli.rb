@@ -59,7 +59,6 @@ class ClimbCatalog::CLI
     input = gets.strip.split(' ').map(&:capitalize).join(' ')
       if input == "List"
         select_type
-        binding.pry
       elsif climb == ClimbCatalog::Climb.find_by_name(input)
         puts ""
         puts "Connecting to #{climb.name} on Mountain Project:"
