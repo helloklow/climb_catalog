@@ -60,7 +60,10 @@ class ClimbCatalog::CLI
       if input == "list"
         select_type
       elsif climb == ClimbCatalog::Climb.find_by_name(input)
-        connect_to_climb_page
+        puts ""
+        puts "Connecting to #{climb.name} on Mountain Project:"
+        puts "#{climb.url}" #'open #{url}'
+        choose_more
       elsif input == "exit"
         goodbye
       else
@@ -69,15 +72,6 @@ class ClimbCatalog::CLI
         select_climb
       end
     end
-  end
-  
-  def connect_to_climb_page
-    #route = ClimbCatalog::Climb.name
-    #url = ClimbCatalog::Climb.url
-    puts ""
-    puts "Connecting to #{ClimbCatalog::Climb.name} on Mountain Project:"
-    puts "#{ClimbCatalog::Climb.url}" #'open #{url}'
-    choose_more
   end
   
   def choose_more
