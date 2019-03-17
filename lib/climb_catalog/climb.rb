@@ -20,8 +20,8 @@ class ClimbCatalog::Climb
     @@all << self
   end
   
-  def self.find(i)
-    self.all.find {|i| i == ClimbCatalog::Climb.name}
+  def self.find(input)
+    self.all.find {|route| route.name == input}
   end
 
   def self.scrape_climbs

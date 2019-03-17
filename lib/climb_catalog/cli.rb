@@ -1,6 +1,7 @@
 class ClimbCatalog::CLI
 
   def call
+    puts "...Loading climbs..."
     ClimbCatalog::Climb.scrape_climbs
     puts ""
     puts "===== Welcome, Colorado Climber! ====="
@@ -42,7 +43,7 @@ class ClimbCatalog::CLI
   def print_climbs_by_type(input)
     ClimbCatalog::Climb.all.select do |route| 
       if route.type == input.capitalize # route types are capitalized
-        puts "- #{route.name} is a #{route.rating} rated #{route.type.downcase} climb"
+        puts "- '#{route.name}' (#{route.type}) #{route.rating}"
       end
     end
   end
