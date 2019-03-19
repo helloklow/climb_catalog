@@ -9,7 +9,7 @@ class ClimbCatalog::Scraper
       location = c.css("td span.small span.text-warm a").text.strip
       rating = c.css("td span.rateYDS").text.strip
       type = c.css("td span.small.text-warm.pl-half span").text.strip
-      url = c.css("td href").text.strip
+      url = c.css("td a").map { |link| link['href'] }
       climb = ClimbCatalog::Climb.new(name, location, rating, type, url)
       climb.save
     end
