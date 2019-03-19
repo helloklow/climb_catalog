@@ -10,6 +10,10 @@ class ClimbCatalog::Scraper
       rating = c.css("td span.rateYDS").text.strip
       type = c.css("td span.small.text-warm.pl-half span").text.strip
       url = c.css("td a").map { |link| link['href'] }
+      
+    #  description_doc = Nokogiri::HTML(open("#{url[0]}")) # need to clean up how descriptions output
+    #  description = description_doc.css("div.fr-view") # slows down load
+      
       climb = ClimbCatalog::Climb.new(name, location, rating, type, url)
       climb.save
     end
