@@ -62,7 +62,7 @@ class ClimbCatalog::CLI
       elsif climb = ClimbCatalog::Climb.find_by_name(input)
         puts ""
         puts "Connecting to #{climb.name} on Mountain Project:"
-        puts "#{climb.url}" #'open #{url}'
+        puts "#{climb.url[0]}" #'open #{url}'
         choose_more
       elsif input == "exit"
         goodbye
