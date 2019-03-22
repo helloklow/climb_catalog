@@ -24,4 +24,8 @@ class ClimbCatalog::Climb
     self.all.find { |climb| climb.name == input.split.map(&:capitalize).join(' ') } # route names are capitalized, some are strings
   end
   
+  def self.sort_by_name 
+    self.all.sort_by { |climb| climb.name }
+  end
+  
 end
